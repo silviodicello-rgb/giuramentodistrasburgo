@@ -1,0 +1,458 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Giuramenti di Strasburgo</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Impianto: gioco a due colonne (serratura + testo ricostruito).
+   Carminio = versione romanza (come la rubrica dei codici), verderame = versione germanica, oro = sigillo. */
+:root{
+  --bg:#eceff3; --surface:#f8f9fb; --ink:#1a2130; --muted:#566074; --line:#cdd3dd;
+  --rom:#9a2b3b; --rom-soft:#f2dde1; --on-rom:#ffffff;
+  --ger:#1d5e5a; --ger-soft:#d6ebe8; --on-ger:#ffffff;
+  --seal:#a8782a; --ok:#2c6a3c; --bad:#9a2b3b;
+  --f-text:'EB Garamond',Georgia,'Times New Roman',serif;
+  --f-ui:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#12161d; --surface:#1b212b; --ink:#e8ebf0; --muted:#9aa4b4; --line:#2f3745;
+    --rom:#e58a98; --rom-soft:#3a2229; --on-rom:#2b0c12;
+    --ger:#62c3ba; --ger-soft:#16332f; --on-ger:#03211e;
+    --seal:#d6a64e; --ok:#74d28e; --bad:#ef8b99;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#12161d; --surface:#1b212b; --ink:#e8ebf0; --muted:#9aa4b4; --line:#2f3745;
+  --rom:#e58a98; --rom-soft:#3a2229; --on-rom:#2b0c12;
+  --ger:#62c3ba; --ger-soft:#16332f; --on-ger:#03211e;
+  --seal:#d6a64e; --ok:#74d28e; --bad:#ef8b99;
+  color-scheme:dark;
+}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--f-ui); font-size:16px; line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:24px 56px;
+}
+.wrap{max-width:1040px;margin:0 auto}
+.roleA{--role:var(--rom);--role-soft:var(--rom-soft);--on-role:var(--on-rom)}
+.roleB{--role:var(--ger);--role-soft:var(--ger-soft);--on-role:var(--on-ger)}
+.eyebrow{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 .6rem}
+h1,h2,h3{font-family:var(--f-text);font-weight:500;text-wrap:balance;margin:0;line-height:1.1}
+h1{font-size:clamp(2.2rem,6vw,3.6rem)}
+h2{font-size:clamp(1.6rem,4vw,2.2rem)}
+h3{font-size:1.3rem}
+p{margin:0}
+.lead{font-family:var(--f-text);font-size:clamp(1.2rem,2.8vw,1.45rem);line-height:1.4;max-width:60ch;margin-top:1rem}
+.rules{display:grid;gap:.9rem;margin:1.6rem 0;padding:0;list-style:none;max-width:68ch}
+.rules li{padding-left:1rem;border-left:2px solid var(--line)}
+.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:14px;margin-top:1.4rem}
+.role{text-align:left;font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--role);border-radius:8px;padding:18px;cursor:pointer}
+.role .k{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--role)}
+.role .n{font-family:var(--f-text);font-size:1.7rem;display:block;margin:.3rem 0 .2rem}
+.role small{color:var(--muted);display:block;font-size:.92rem}
+button:focus-visible,textarea:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--seal);outline-offset:2px}
+.btn{font:inherit;font-weight:500;padding:.6rem 1rem;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.btn.primary{background:var(--role,var(--ink));color:var(--on-role,var(--bg));border-color:transparent}
+.btn[disabled]{opacity:.5;cursor:default}
+.bar{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between}
+.bar .left,.bar .right{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center}
+.badge{font-family:var(--f-mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;background:var(--role);color:var(--on-role);padding:.3rem .65rem;border-radius:4px}
+.clock{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:1.05rem}
+.clock.over{color:var(--bad)}
+.meta{font-family:var(--f-mono);font-size:.78rem;color:var(--muted)}
+.linkbtn{font:inherit;font-size:.88rem;background:none;border:none;color:var(--muted);text-decoration:underline;cursor:pointer;padding:.2rem}
+.rail{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 22px}
+.seal{width:36px;height:36px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-family:var(--f-mono);font-size:.85rem;color:var(--muted);background:var(--surface)}
+.seal.now{border-color:var(--role);color:var(--role);box-shadow:0 0 0 3px var(--role-soft)}
+.seal.done{background:var(--role);border-color:var(--role);color:var(--on-role)}
+.game{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:780px){.game{grid-template-columns:minmax(0,1fr)}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px;min-width:0}
+.lang{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--role)}
+.ms{font-family:var(--f-text);font-size:clamp(1.4rem,3.8vw,2rem);line-height:1.32;border-left:4px solid var(--role);padding:2px 0 2px 16px;margin:12px 0 18px;overflow-wrap:anywhere}
+.hint{background:var(--role-soft);border-radius:6px;padding:10px 12px;margin:0 0 10px;font-size:.95rem}
+.hint b{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:2px;font-weight:500}
+label{display:block;font-weight:600;margin:16px 0 6px}
+textarea{width:100%;box-sizing:border-box;min-height:104px;resize:vertical;font-family:var(--f-text);font-size:1.2rem;line-height:1.35;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:10px 12px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.fb{min-height:1.5em;margin-top:10px;font-size:.95rem}
+.fb.bad{color:var(--bad)}
+.open{border-top:4px solid var(--ok)}
+.open .tag{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ok)}
+.ref{font-family:var(--f-text);font-size:1.35rem;line-height:1.35;margin:.5rem 0 .8rem}
+.note{color:var(--muted);font-size:.95rem;margin-bottom:14px}
+.aside h3{margin-bottom:12px}
+.seg{font-family:var(--f-text);font-size:1.15rem;line-height:1.4;margin:0 0 12px}
+.seg.locked{display:flex;align-items:center;gap:10px;font-family:var(--f-mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.seg.locked i{display:block;flex:1;height:.9rem;border-radius:3px;background:var(--line)}
+.opts{display:grid;gap:10px;margin:14px 0}
+.opt{display:flex;gap:10px;align-items:flex-start;font-weight:400;margin:0;padding:12px;border:1px solid var(--line);border-radius:6px;cursor:pointer;background:var(--bg)}
+.opt input{margin-top:.3rem;accent-color:var(--seal)}
+.win p.full{font-family:var(--f-text);font-size:clamp(1.3rem,3vw,1.7rem);line-height:1.4;margin:1rem 0;max-width:60ch}
+.stats{display:flex;flex-wrap:wrap;gap:8px 28px;margin:1rem 0;font-family:var(--f-mono);font-size:.85rem;color:var(--muted)}
+.stats b{color:var(--ink);font-weight:500}
+.debrief{margin:1rem 0 0;padding-left:1.2rem;display:grid;gap:.6rem;max-width:64ch}
+.t-lock{margin-top:16px}
+.t-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:14px;margin:12px 0}
+.t-cols .ms{font-size:1.25rem;margin:6px 0}
+.t-small{font-size:.9rem;color:var(--muted);margin-top:8px}
+</style>
+
+<div class="wrap" id="app"></div>
+
+<script>
+/* Dati: i cinque passi del primo giuramento. a = versione romanza, b = versione germanica.
+   cs = elementi che la risposta deve contenere (regex su testo normalizzato: minuscolo, senza accenti).
+   need = quanti elementi servono; must = elemento indispensabile. */
+var LOCKS = [
+  {
+    a: "Pro Deo amur et pro christian poblo et nostro commun saluament",
+    b: "In Godes minna ind in thes christiānes folches ind unsēr bēdhero gehaltnissī",
+    it: "Per l'amore di Dio, per il popolo cristiano e per la nostra comune salvezza,",
+    need: 5,
+    cs: [
+      {n:"amore", re:/\bamor/},
+      {n:"Dio", re:/\bdio\b/},
+      {n:"popolo", re:/popol/},
+      {n:"cristiano", re:/cristian/},
+      {n:"comune", re:/comun/},
+      {n:"salvezza", re:/salvezz|salvament|salvar|salvo|salute|salvazion|incolumit|sicurezz/}
+    ],
+    hA: [
+      "Quattro parole sono quasi italiane: amur, poblo, christian, saluament. Partite da lì.",
+      "In poblo c'è una b dove l'italiano ha una p. Saluament finisce come 'salvamento': qual è il sostantivo italiano di uso comune con lo stesso senso?"
+    ],
+    hB: [
+      "Leggete ad alta voce con l'inglese in testa: Godes, folches, unsēr, christiānes. Vi suonano come God's, folk's, our, Christian's.",
+      "Minna non ha parenti inglesi: guardate la frase del compagno, dove nello stesso punto c'è amur. In gehaltnissī riconoscete 'hold' (tenere, custodire, mettere al sicuro). Bēdhero vuol dire 'di tutti e due'."
+    ],
+    note: "Il tedesco minna sopravvive nei Minnesänger, i poeti dell'amore cortese."
+  },
+  {
+    a: "d'ist di in auant, in quant Deus sauir et podir me dunat",
+    b: "fon thesemo dage frammordes, sō fram sō mir Got gewizci indi mahd furgibit",
+    it: "da oggi in avanti, in quanto Dio mi concede sapere e potere,",
+    need: 5,
+    cs: [
+      {n:"da oggi", re:/oggi|questo giorno|quel giorno|d'ora|da ora|ora in|questo di\b/},
+      {n:"avanti", re:/avanti|innanzi|in poi|futuro|in seguito|ora in/},
+      {n:"in quanto", re:/quanto/},
+      {n:"sapere", re:/saper|sapien|conoscen|saggezz/},
+      {n:"potere", re:/poter|potenz|forza|capacit|possibilit/},
+      {n:"Dio", re:/\bdio\b/}
+    ],
+    hA: [
+      "Di è il latino DIES: da quale parola italiana la riconoscete? 'In auant' lo ritrovate in 'avanti'.",
+      "Sauir e podir sono due infiniti usati come nomi, come in 'il sapere' e 'il potere'. Dunat viene da donare."
+    ],
+    hB: [
+      "Dage è day, Got è God, mahd è might. Fram e frammordes ricordano from e forward.",
+      "Gewizci contiene 'wit' e 'wissen': la conoscenza. Furgibit è l'antenato di forgive: qui 'concede, dà'. Confrontate con sauir et podir del compagno."
+    ],
+    note: "Sauir e podir sono infiniti usati come nomi: l'italiano fa lo stesso con 'il sapere' e 'il potere'."
+  },
+  {
+    a: "si saluarai eo cist meon fradre Karlo",
+    b: "sō haldih thesan mīnan bruodher",
+    it: "così salverò io questo mio fratello Carlo,",
+    need: 5,
+    cs: [
+      {n:"così", re:/\bcosi\b|in tal modo|allo stesso modo/},
+      {n:"verbo (salvare, aiutare, tenere)", re:/salv|aiut|protegg|difend|tratter|teng|tener|terr|custod|rispett|mantenu|sostenu|sostegn/},
+      {n:"questo", re:/quest/},
+      {n:"mio", re:/\bmio\b/},
+      {n:"fratello", re:/fratell/},
+      {n:"Carlo", re:/carl/, must:true}
+    ],
+    hA: [
+      "Saluarai è salvare + ai (cioè 'ho'): il futuro romanzo nasce così. Come si dice oggi in italiano? Attenzione a 'si': non è 'sì'.",
+      "Si all'inizio viene dal latino SIC, 'così'. Eo è 'io'. Cist mantiene la st di 'questo'."
+    ],
+    hB: [
+      "Haldih è hold + ih (io): 'io tengo'. Bruodher è brother, mīnan è mine, thesan è 'this'.",
+      "Nel vostro testo il fratello non ha nome. Il compagno ce l'ha. Per il verbo, 'tenere, custodire' va bene quanto 'salvare'."
+    ],
+    note: "Saluarai nasce da 'salvare ho' e diventa il futuro 'salverò'. Il tedesco usa invece il presente haldih per dire il futuro."
+  },
+  {
+    a: "et in adiudha et in cadhuna cosa si cum om per dreit son fradra saluar dift, in o quid il mi altresi fazet",
+    b: "sōso man mit rehtu sīnan bruodher scal, in thiu thaz er mig sō sama duo",
+    it: "con aiuto e in ogni cosa, come per diritto si deve salvare il proprio fratello, a patto che egli faccia altrettanto con me;",
+    need: 6,
+    cs: [
+      {n:"aiuto", re:/aiut/},
+      {n:"ogni cosa", re:/ogni|ciascun|tutt|qualsias|qualunque/},
+      {n:"come", re:/\bcome\b|nel modo|allo stesso modo/},
+      {n:"diritto", re:/diritt|giust|ragione|legge|giustizi/},
+      {n:"si deve", re:/\bdev|\bdov|\bdebb|bisogn|tocca|spetta|obblig/},
+      {n:"fratello", re:/fratell/},
+      {n:"altrettanto", re:/altrettant|stesso modo|allo stesso|ugualmente|lo stesso|a sua volta|reciproc|ricambi|contraccambi|anche lui|pure lui|come me|similmente|analogamente|altresi/},
+      {n:"a patto che", re:/patto|condizion|purche|a che|nel caso|se anche|se lui|se egli|ammesso/}
+    ],
+    hA: [
+      "Dreit è 'diritto' (e 'giusto'). Dift viene dal latino DEBET: che cosa si deve fare al proprio fratello? Fazet è 'faccia'.",
+      "Adiudha è 'aiuto'. Cadhuna è 'ciascuna'. Altresi è la parola che cercate per 'allo stesso modo'."
+    ],
+    hB: [
+      "Rehtu è right, anche nel senso di 'diritto, giusto'. Scal è shall, qui 'deve'. Man è 'uno, si'. Duo è do.",
+      "Thaz er mig sō sama duo = 'che lui a me così lo stesso faccia'. Il compagno ha altresi nello stesso punto. Mit rehtu = 'con diritto'."
+    ],
+    note: "Dift viene dal latino DEBET, adiudha dal latino ADIUTARE: il romanzo conserva il suono antico, l'italiano ha già semplificato."
+  },
+  {
+    a: "Et ab Ludher nul plaid nunquam prindrai qui, meon uol, cist meon fradre Karle in damno sit",
+    b: "indi mit Ludheren in nohheiniu thing ne gegango, the mīnan willon imo ce scadhen werdhēn",
+    it: "e con Lotario non prenderò mai alcun accordo che, per mia volontà, rechi danno a questo mio fratello Carlo.",
+    need: 5,
+    cs: [
+      {n:"Lotario", re:/lotar|ludher/, must:true},
+      {n:"accordo", re:/accord|patt|intes|trattat|alleanz|negozi|impegn|placit/},
+      {n:"mai", re:/\bmai\b|giammai|in nessun caso/},
+      {n:"alcun", re:/nessun|alcun|niente|nulla/},
+      {n:"volontà", re:/volont|voler|\bvolo\b|voglia|consenso/},
+      {n:"danno", re:/dann|nuoc|male|svantagg|pregiudic|offes/},
+      {n:"fratello", re:/fratell/}
+    ],
+    hA: [
+      "Plaid è 'placito': un accordo, una decisione presa insieme. Prindrai è prendere + ai. Damno è 'danno'. Meon uol è 'mio volere'.",
+      "Qui vuol dire 'che' e sit vuol dire 'sia': 'in damno sit' = 'sia in danno'. Ludher non è Ludovico: è il terzo fratello."
+    ],
+    hB: [
+      "Nohheiniu è no + kin: 'nessun tipo di'. Thing ha il senso medievale di 'affare, accordo, assemblea'. Mīnan willon è 'mine will'.",
+      "Gegango fa pensare a go: 'andare, entrare'. Scadhen è scathe, come in 'unscathed' (illeso): il danno. Ludheren è Lotario, non Ludovico."
+    ],
+    note: "Plaid è il latino PLACITUM, la stessa parola dei 'placiti' campani del 960."
+  }
+];
+
+var FINAL_OPTS = [
+  {v:"a", t:"Ciascun re giura nella lingua dell'esercito dell'altro, perché i soldati capiscano."},
+  {v:"b", t:"Ciascun re giura nella propria lingua materna, per rendere il giuramento più solenne."},
+  {v:"c", t:"Il romanzo era la lingua dei trattati e il germanico quella delle battaglie."}
+];
+
+var KEY = "gs842";
+var TARGET = 20 * 60000;
+var S = load() || {role:null, idx:0, solved:false, hints:{}, start:0, end:0};
+var DRAFT = {};
+var FB = {msg:"", bad:false};
+var CONFIRM = false;
+var T = null;
+
+function load(){ try { return JSON.parse(localStorage.getItem(KEY)); } catch(e){ return null; } }
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){} }
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function norm(s){
+  return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"")
+    .replace(/[’`´]/g,"'").replace(/[^a-z0-9' ]+/g," ").replace(/\s+/g," ").trim();
+}
+function fmt(ms){
+  var s = Math.floor(ms/1000), m = Math.floor(s/60); s = s % 60;
+  return (m<10?"0":"") + m + ":" + (s<10?"0":"") + s;
+}
+function totalHints(){ var t=0; for (var k in S.hints) t += S.hints[k]; return t; }
+function fullText(){ return LOCKS.map(function(l){ return l.it; }).join(" "); }
+
+/* ---------- Viste ---------- */
+function startView(){
+  return '<p class="eyebrow">Strasburgo, 14 febbraio 842</p>' +
+  '<h1>Giuramenti di Strasburgo</h1>' +
+  '<p class="lead">Ludovico e Carlo, due fratelli, giurano alleanza contro il terzo, Lotario. Perché gli eserciti capiscano, ciascuno giura nella lingua dell\'altro: una in romanzo, l\'altra in germanico. Lavorate in coppia e riportate il testo in italiano di oggi.</p>' +
+  '<ul class="rules">' +
+  '<li><b>Ognuno vede una sola versione.</b> A ha il romanzo (antico francese), B il germanico (antico alto tedesco). Le due versioni dicono quasi le stesse cose, ma ognuno capisce parole che l\'altro non può capire.</li>' +
+  '<li><b>Cinque serrature</b>, una per ogni passo del giuramento. Per aprirne una scrivete la frase in italiano moderno. Concordatela a voce e inseritela su entrambi gli schermi.</li>' +
+  '<li><b>Due indizi per serratura.</b> Usateli quando siete bloccati: vengono contati. Tempo consigliato: 20 minuti.</li>' +
+  '</ul>' +
+  '<h2>Chi siete?</h2>' +
+  '<div class="roles">' +
+  '<button class="role roleA" data-act="role" data-role="A"><span class="k">Studente A</span><span class="n">Il testo romanzo</span><small>Antico francese. Ci arrivate con l\'italiano.</small></button>' +
+  '<button class="role roleB" data-act="role" data-role="B"><span class="k">Studente B</span><span class="n">Il testo germanico</span><small>Antico alto tedesco. Ci arrivate con l\'inglese.</small></button>' +
+  '</div>';
+}
+
+function railView(){
+  var h = '<div class="rail" aria-label="Avanzamento">';
+  for (var i=0;i<6;i++){
+    var done = i < S.idx || (i === S.idx && S.solved && i < 5);
+    var cls = done ? "seal done" : (i === S.idx ? "seal now" : "seal");
+    var lab = i < 5 ? String(i+1) : "F";
+    h += '<span class="'+cls+'" title="'+(i<5?"Serratura "+(i+1):"Serratura finale")+'">'+(done?"✓":lab)+'</span>';
+  }
+  return h + '</div>';
+}
+
+function asideView(){
+  var h = '<aside class="card aside"><h3>Testo ricostruito</h3>';
+  for (var i=0;i<5;i++){
+    var open = i < S.idx || (i === S.idx && S.solved);
+    h += open ? '<p class="seg">'+esc(LOCKS[i].it)+'</p>'
+              : '<p class="seg locked"><span>Serratura '+(i+1)+'</span><i></i></p>';
+  }
+  return h + '</aside>';
+}
+
+function lockCard(i){
+  var L = LOCKS[i], isA = S.role === "A";
+  var txt = isA ? L.a : L.b, hints = isA ? L.hA : L.hB, n = S.hints[i] || 0;
+  var lang = isA ? "Antico francese · versione di A" : "Antico alto tedesco · versione di B";
+  var h = '<section class="card'+(S.solved?' open':'')+'"><p class="eyebrow">Serratura '+(i+1)+' di 5</p>' +
+          '<p class="lang">'+lang+'</p><p class="ms" lang="'+(isA?'fro':'goh')+'">'+esc(txt)+'</p>';
+  if (S.solved){
+    h += '<p class="tag">Serratura aperta</p><p class="ref">'+esc(L.it)+'</p>' +
+         '<p class="note">'+esc(L.note)+'</p>' +
+         '<div class="actions"><button class="btn primary" data-act="next">'+(i<4?'Prossima serratura':'Serratura finale')+'</button></div></section>';
+    return h;
+  }
+  for (var k=0;k<n;k++) h += '<p class="hint"><b>Indizio '+(k+1)+'</b>'+esc(hints[k])+'</p>';
+  h += '<label for="ans">Scrivete questo passo in italiano moderno</label>' +
+       '<textarea id="ans" rows="3" spellcheck="false" placeholder="Una frase sola, come la direste oggi.">'+esc(DRAFT[i]||"")+'</textarea>' +
+       '<div class="actions"><button class="btn primary" data-act="check">Prova ad aprire</button>' +
+       (n<2 ? '<button class="btn" data-act="hint">Indizio '+(n+1)+'</button>' : '') + '</div>' +
+       '<p class="fb'+(FB.bad?' bad':'')+'" id="fb" aria-live="polite">'+esc(FB.msg)+'</p></section>';
+  return h;
+}
+
+function finalCard(){
+  var h = '<section class="card"><p class="eyebrow">Serratura finale</p>' +
+    '<h3>Perché Ludovico giura in romanzo e Carlo in germanico?</h3>' +
+    '<div class="opts" role="radiogroup" aria-label="Risposte">';
+  FINAL_OPTS.forEach(function(o){
+    h += '<label class="opt" for="o_'+o.v+'"><input type="radio" name="q" id="o_'+o.v+'" value="'+o.v+'"><span>'+esc(o.t)+'</span></label>';
+  });
+  h += '</div><div class="actions"><button class="btn primary" data-act="final">Apri</button></div>' +
+       '<p class="fb'+(FB.bad?' bad':'')+'" id="fb" aria-live="polite">'+esc(FB.msg)+'</p></section>';
+  return h;
+}
+
+function winView(){
+  return '<section class="card win open"><p class="tag">Tutte le serrature aperte</p>' +
+    '<h2>Il giuramento in italiano</h2>' +
+    '<p class="full">'+esc(fullText())+'</p>' +
+    '<div class="stats"><span>Tempo <b>'+fmt(S.end-S.start)+'</b></span><span>Indizi usati <b>'+totalHints()+'</b></span></div>' +
+    '<h3>Da discutere con la classe</h3>' +
+    '<ol class="debrief">' +
+    '<li>Quali parole avete riconosciuto subito e quali solo grazie al compagno?</li>' +
+    '<li>Nella versione romanza il fratello è Carlo, in quella germanica è Ludovico. Perché i due giuramenti sono speculari?</li>' +
+    '<li>Il testo romanzo è già italiano? Che cosa gli manca per esserlo?</li>' +
+    '</ol></section>';
+}
+
+function gameView(){
+  var role = S.role;
+  var h = '<div class="role'+role+'">' +
+    '<div class="bar"><div class="left"><span class="badge">Studente '+role+'</span><span class="clock" id="clock">00:00</span></div>' +
+    '<div class="right"><span class="meta">Indizi usati: '+totalHints()+'</span>' +
+    (CONFIRM
+      ? '<button class="btn" data-act="reset-yes">Sì, ricomincia</button><button class="linkbtn" data-act="reset-no">Annulla</button>'
+      : '<button class="linkbtn" data-act="reset">Ricomincia</button>') +
+    '</div></div>' + railView() + '<div class="game"><div>';
+  if (S.idx < 5) h += lockCard(S.idx);
+  else if (S.idx === 5) h += finalCard();
+  else h += winView();
+  h += '</div>' + asideView() + '</div></div>';
+  return h;
+}
+
+function teacherView(){
+  var h = '<p class="eyebrow">Scheda docente</p><h1>Giuramenti di Strasburgo</h1>' +
+    '<p class="lead">Tutte le serrature con testi, soluzioni e criteri di controllo. Per gli studenti usate il link senza la parte finale dopo il simbolo #.</p>' +
+    '<p class="t-small">Il controllo accetta una risposta se contiene almeno il numero indicato di elementi, anche con parole diverse da quelle di riferimento. Un elemento contrassegnato come indispensabile deve esserci sempre. Le serrature 3 e 5 richiedono i nomi, che solo uno dei due testi riporta in modo esplicito.</p>';
+  LOCKS.forEach(function(L,i){
+    h += '<section class="card t-lock"><p class="eyebrow">Serratura '+(i+1)+'</p>' +
+      '<div class="t-cols"><div class="roleA"><p class="lang">A · antico francese</p><p class="ms">'+esc(L.a)+'</p></div>' +
+      '<div class="roleB"><p class="lang">B · antico alto tedesco</p><p class="ms">'+esc(L.b)+'</p></div></div>' +
+      '<p class="ref">'+esc(L.it)+'</p>' +
+      '<p class="t-small">Elementi richiesti ('+L.need+' su '+L.cs.length+'): ' +
+      L.cs.map(function(c){ return esc(c.n)+(c.must?' (indispensabile)':''); }).join(", ")+'.</p>' +
+      '<p class="t-small"><b>Indizi A:</b> '+esc(L.hA.join(" / "))+'</p>' +
+      '<p class="t-small"><b>Indizi B:</b> '+esc(L.hB.join(" / "))+'</p>' +
+      '<p class="t-small"><b>Nota:</b> '+esc(L.note)+'</p></section>';
+  });
+  h += '<section class="card t-lock"><p class="eyebrow">Serratura finale</p>' +
+    '<p>Risposta corretta: la prima. Ludovico, di lingua germanica, giura in romanzo davanti all\'esercito di Carlo. Carlo giura in germanico davanti all\'esercito di Ludovico.</p></section>' +
+    '<p class="t-small" style="margin-top:16px"><a href="#">Vai alla versione per gli studenti</a></p>';
+  return h;
+}
+
+/* ---------- Controllo e azioni ---------- */
+function check(){
+  var ta = document.getElementById("ans");
+  var v = ta ? ta.value : "";
+  DRAFT[S.idx] = v;
+  var L = LOCKS[S.idx], n = norm(v), found = 0, missMust = false;
+  L.cs.forEach(function(c){
+    if (c.re.test(n)) found++; else if (c.must) missMust = true;
+  });
+  if (n.length < 12){
+    FB = {msg:"Scrivete una frase intera, non una parola sola.", bad:true};
+  } else if (found >= L.need && !missMust){
+    S.solved = true; FB = {msg:"", bad:false}; save(); render(); return;
+  } else if (missMust){
+    FB = {msg:"Manca un elemento indispensabile. Controllate anche la versione del compagno.", bad:true};
+  } else {
+    FB = {msg:"Avete "+found+" elementi su "+L.cs.length+": ne servono almeno "+L.need+". Rileggete e confrontate i due testi.", bad:true};
+  }
+  var fb = document.getElementById("fb");
+  if (fb){ fb.textContent = FB.msg; fb.className = "fb bad"; }
+}
+
+function act(name, el){
+  if (name === "role"){
+    S = {role:el.getAttribute("data-role"), idx:0, solved:false, hints:{}, start:Date.now(), end:0};
+    DRAFT = {}; FB = {msg:"", bad:false}; save(); render();
+  } else if (name === "hint"){
+    var ta = document.getElementById("ans"); if (ta) DRAFT[S.idx] = ta.value;
+    S.hints[S.idx] = Math.min(2, (S.hints[S.idx] || 0) + 1); save(); render();
+  } else if (name === "check"){
+    check();
+  } else if (name === "next"){
+    S.idx += 1; S.solved = false; FB = {msg:"", bad:false}; save(); render();
+  } else if (name === "final"){
+    var r = document.querySelector('input[name="q"]:checked');
+    if (!r){ FB = {msg:"Scegliete una risposta.", bad:true}; }
+    else if (r.value === "a"){ S.idx = 6; S.end = Date.now(); FB = {msg:"", bad:false}; save(); render(); return; }
+    else { FB = {msg:"Non è questa. Pensate a chi doveva capire il giuramento.", bad:true}; }
+    var fb = document.getElementById("fb");
+    if (fb){ fb.textContent = FB.msg; fb.className = "fb bad"; }
+  } else if (name === "reset"){ CONFIRM = true; render(); }
+  else if (name === "reset-no"){ CONFIRM = false; render(); }
+  else if (name === "reset-yes"){
+    CONFIRM = false; S = {role:null, idx:0, solved:false, hints:{}, start:0, end:0};
+    DRAFT = {}; FB = {msg:"", bad:false}; save(); render();
+  }
+}
+
+/* ---------- Timer e rendering ---------- */
+function stopTimer(){ if (T){ clearInterval(T); T = null; } }
+function tick(){
+  var el = document.getElementById("clock"); if (!el) return;
+  var end = S.idx >= 6 ? S.end : Date.now();
+  var ms = Math.max(0, end - S.start);
+  el.textContent = fmt(ms);
+  if (ms > TARGET) el.className = "clock over";
+}
+function startTimer(){ stopTimer(); tick(); if (S.idx < 6) T = setInterval(tick, 1000); }
+
+function render(){
+  var app = document.getElementById("app");
+  if (location.hash === "#docente"){ app.innerHTML = teacherView(); stopTimer(); return; }
+  if (!S.role){ app.innerHTML = startView(); stopTimer(); return; }
+  app.innerHTML = gameView();
+  startTimer();
+}
+
+document.addEventListener("click", function(e){
+  var t = e.target.closest ? e.target.closest("[data-act]") : null;
+  if (t) act(t.getAttribute("data-act"), t);
+});
+window.addEventListener("hashchange", render);
+window.__gs = {LOCKS: LOCKS, norm: norm};
+render();
+</script>
+
+</body></html>
